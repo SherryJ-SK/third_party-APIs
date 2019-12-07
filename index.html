@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Calender</title>
+
+    <!---- CSS ---->
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Vibes&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!---- JQ --->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="card text-center">
+        <div class="card-body">
+            <p class="card-title">My work day scheduler</p>
+            <p class="card-text">Working without a plan is sailing without a compass.</p>
+        </div>
+    </div>
+    <div class="container">
+
+
+    </div>
+
+
+    <script>
+        var input = $(".form-group");
+        var saveBtn = $(".btn");
+        var container = $(".container");
+        var hours = $(".difftime");
+
+        var hr = (new Date()).getHours();
+
+
+        // create the rows in the container
+        var diffInput = ["9 am", "10 am", "11 am", "12 pm", "13 pm", "14 pm", "15 pm", "16 pm", "17 pm"];
+        var diffTime = ["9", "10", "11", "12", "13", "14", "15", "16", "17"];
+
+        for (var i = 0; i < diffInput.length; i++) {
+            var rowDiv = $("<div class='row'>");
+
+            var colDiv = $("<div class='time col-md-2'>")
+
+            rowDiv.append(colDiv);
+
+            var timeP = $("<p class='difftime text-right mt-2'>").text(diffInput[i]);
+
+            colDiv.append(timeP);
+
+            var inputEl = $("<textarea class='form-group col-md-8 border rounded my-1 passed'>").attr("id", diffTime[i]);
+
+            rowDiv.append(inputEl);
+
+
+            var buttonEl = $("<button class='btn save mt-1 p-3'>").attr("id", diffInput[i]);
+
+            var iconEl = $("<i class='fa fa-folder'>");
+
+            buttonEl.append(iconEl);
+            rowDiv.append(buttonEl);
+
+            container.append(rowDiv);
+
+        }
+
+        // match real time and show different color in input boxes
+        console.log(hr);
+        for (var i = 0; i < diffTime.length; i++) {
+            if (hr == diffTime[i]) {
+                console.log(diffTime[i]);
+                $(document.getElementById(diffTime[i])).css("background-color", "#ffb3b3");
+            }
+
+            if (hr < diffTime[i]) {
+                $(document.getElementById(diffTime[i])).css("background-color", "#9fdf9f");
+            }
+        }
+
+        var newValue = $(".btn").siblings(".form-group").val()
+
+        $("#9").val(localStorage.getItem("9 am", newValue));
+        $("#10").val(localStorage.getItem("10 am", newValue));
+        $("#11").val(localStorage.getItem("11 am", newValue));
+        $("#12").val(localStorage.getItem("12 pm", newValue));
+        $("#13").val(localStorage.getItem("13 pm", newValue));
+        $("#14").val(localStorage.getItem("14 pm", newValue));
+        $("#15").val(localStorage.getItem("15 pm", newValue));
+        $("#16").val(localStorage.getItem("16 pm", newValue));
+        $("#17").val(localStorage.getItem("17 pm", newValue));
+
+
+        // pick up the id when the save button clicked
+        $(".save").on("click", function () {
+            var time = event.target.id;
+
+            if (event.target.matches("button")) {
+                console.log(time);
+            }
+
+            var value = $(this).siblings(".form-group").val();
+            console.log(value);
+
+            localStorage.setItem(time, value);
+
+        });
+
+
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+.card-title { 
+    font-family: 'Amatic SC', cursive;
+    font-size: 100px;
+}
+
+
+.card-body {
+    background-color: #ffffe6;
+}
+.time {
+    padding: 20px 0px 15px 40px;
+    border-bottom: solid 0.5px #80bfff;
+    font-family: 'Vibes', cursive;
+    font-size: 20px;
+    border-right: solid salmon 1.4px;
+}
+
+.btn {
+    border: none; 
+    padding: 30px 36px; 
+    font-size: 16px; 
+    cursor: pointer; 
+}
+  
+.btn:hover {
+    background-color: #ffdf80;
+}
+
+.passed  {
+    background-color: #a7afbe;
+}
